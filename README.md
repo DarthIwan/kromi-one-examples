@@ -6,10 +6,9 @@ KROM's source code is closed while we develop it. This repository holds what we 
 
 ## What's here
 
-Nothing yet. Coming first:
+- **[DDR4-2400 on the KV260](kv260-ddr4-2400/):** a Vivado script that lets the PS DDR4 run at the 2400 MT/s the board preset asks for, instead of 2133. MIT licence.
 
-- **DDR4-2400 on the KV260:** a Vivado script that lets the PS DDR4 run at the 2400 MT/s the board preset asks for, instead of 2133.
-- **Example programs:** short C and AArch64 assembly programs for Kromi One, once the terms for the developer kit are set.
+Coming next: short example programs in C that show what programming Kromi One looks like.
 
 Each folder will state its licence.
 

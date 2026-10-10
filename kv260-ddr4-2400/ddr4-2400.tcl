@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 Sergej Klementinovski
+#
 # KV260 (K26 SOM): run the PS DDR4 at DDR4-2400, the rate the board preset asks for, instead of DDR4-2133.
 #
 # The kv260_som board preset sets DDR4_2400R, but it also clocks the FPD main switch (TOPSW_MAIN, 533.33 MHz) from

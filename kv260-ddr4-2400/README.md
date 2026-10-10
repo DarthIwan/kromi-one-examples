@@ -46,3 +46,7 @@ We did not measure raw DDR bandwidth. In theory, the peak of the K26's 64-bit DD
 1. **The boot firmware sets up the DDR.** On the KV260 that is the firmware in QSPI, so changing the Vivado design alone doesn't change a running board. The firmware (psu_init in the boot image) must be rebuilt from the changed design. We tested by re-initialising over JTAG, not with a flashed boot image. Flashing boot firmware is at your own risk.
 2. **One board, one session:** no temperature or long-term qualification. Whether DDR4-2400 is fine for production use on the K26 is a question for AMD; we will add their answer here.
 3. **Other clocks move:** TOPSW_MAIN moves to the video PLL, and GDMA to 600 MHz. If your design uses the video PLL, for example for a DisplayPort video clock, check its clocks after the change.
+
+## Licence
+
+MIT, see [LICENSE](LICENSE). The script comes without any warranty.
