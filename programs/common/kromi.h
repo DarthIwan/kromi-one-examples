@@ -62,6 +62,12 @@ uint32_t kromi_2d_picture(struct kromi_2d *q, struct kromi_memory *pixels, uint3
 /* The next command of the batch, zeroed, its kind set; null when the batch is full (run it first). */
 krom_abi2_k2d_command *kromi_2d_command(struct kromi_2d *q, uint16_t opcode);
 
+/* Whether the machine's 2D chipset draws textured triangles (DRAW_TRIANGLES). */
+bool kromi_2d_has_triangles(const krom_abi2_boot_info *boot);
+
+/* The next command of the batch as textured triangles, zeroed, its kind set; null when the batch is full. */
+krom_abi2_k2d_triangles *kromi_2d_triangles(struct kromi_2d *q);
+
 /* The batch run: handed to KROM, then waited for until the chipset finished every command (a PRESENT finishes when
  * its picture is on screen, so a frame loop runs at the display's rate). */
 uint32_t kromi_2d_run(struct kromi_2d *q);

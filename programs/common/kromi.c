@@ -192,6 +192,35 @@ krom_abi2_k2d_command *kromi_2d_command(struct kromi_2d *q, uint16_t opcode)
     return command;
 }
 
+bool kromi_2d_has_triangles(const krom_abi2_boot_info *boot)
+{
+    const uint8_t *table = (const uint8_t *)boot + boot->capability_table_offset;
+
+    for (uint32_t i = 0; i < boot->capability_count; ++i) {
+        const krom_abi2_capability *capability = (const void *)(table + (uint64_t)i * boot->capability_entry_bytes);
+
+        if (capability->family == (uint16_t)KROM_ABI2_FAMILY_KCHIPSET_2D) {
+            const krom_abi2_k2d_constraints *k2d = (const void *)((const uint8_t *)boot
+                                                                  + capability->constraint_offset);
+
+            return (k2d->flags & (uint32_t)KROM_ABI2_K2D_TRIANGLES) != 0U;
+        }
+    }
+    return false;
+}
+
+krom_abi2_k2d_triangles *kromi_2d_triangles(struct kromi_2d *q)
+{
+    krom_abi2_k2d_triangles *command = slot(q, (uint16_t)KROM_ABI2_K2D_OPCODE_DRAW_TRIANGLES, sizeof(*command),
+                                            KROM_ABI2_PAYLOAD_DEVICE_READ);
+
+    if (command != NULL) {
+        command->byte_size = sizeof(*command);
+        command->command_kind = (uint16_t)KROM_ABI2_K2D_OPCODE_DRAW_TRIANGLES;
+    }
+    return command;
+}
+
 uint32_t kromi_2d_run(struct kromi_2d *q)
 {
     const uint8_t *shared = (const uint8_t *)q->shared;
